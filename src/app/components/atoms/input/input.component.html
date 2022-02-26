@@ -1,0 +1,10 @@
+<nz-input-group [nzSize]="size" [ngClass]="classes">
+  <input
+    type="text"
+    nz-input
+    [nzBorderless]="withOutBorder"
+    [placeholder]="placeholder"
+    (input)="onChange($event)"
+    [value]="value"
+  />
+</nz-input-group>

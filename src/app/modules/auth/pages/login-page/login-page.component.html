@@ -1,1 +1,36 @@
-<p>login works!</p>
+<div nz-row nzAlign="middle" nzJustify="center" class="container">
+  <div nz-col nzXs="22" nzMd="12" nzLg="6">
+    <nz-card>
+      <form
+        nz-form
+        [formGroup]="loginForm"
+        (submit)="onSubmit()"
+        nzLayout="vertical"
+      >
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="email">Email</nz-form-label>
+          <nz-form-control nzErrorTip="Please input your email">
+            <app-input
+              formControlName="email"
+              placeholder="Please input your email"
+            ></app-input>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="email">Password</nz-form-label>
+          <nz-form-control nzErrorTip="Please input your password">
+            <app-input
+              formControlName="password"
+              placeholder="Please input your password"
+            ></app-input>
+          </nz-form-control>
+        </nz-form-item>
+        <div nz-row>
+          <div nz-col nzXs="24">
+            <app-button label="Log In" class="login-button"></app-button>
+          </div>
+        </div>
+      </form>
+    </nz-card>
+  </div>
+</div>
