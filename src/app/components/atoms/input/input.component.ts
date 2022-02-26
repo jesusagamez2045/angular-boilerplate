@@ -4,7 +4,9 @@ import {
   EventEmitter,
   forwardRef,
   Input,
-  Output
+  OnChanges,
+  Output,
+  SimpleChanges
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -20,20 +22,37 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class InputComponent implements ControlValueAccessor {
+export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() size: 'large' | 'small' | 'default' = 'default';
-  @Input() classes: string = '';
   @Input() placeholder: string = '';
   @Input() withOutBorder: boolean = false;
+  @Input() type: 'text' | 'password' | 'email' | 'text-area' = 'text';
+  @Input() withSufiz: boolean = false;
+  @Input() rows: number = 4;
 
   @Output() onchange: EventEmitter<Event> = new EventEmitter();
 
+  public inputType?: string;
+  public passwordVisible: boolean = false;
   public value?: string;
   public changed?: (value: string) => void;
   public touched?: () => void;
   public isDisabled: boolean = false;
 
   constructor() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.inputType = this.type;
+  }
+
+  public changePasswordVisible(): void {
+    this.passwordVisible = !this.passwordVisible;
+    if(this.passwordVisible) {
+      this.inputType = 'text';
+    } else {
+      this.inputType = 'password';
+    }
+  }
 
   public writeValue(value: string): void {
     this.value = value;

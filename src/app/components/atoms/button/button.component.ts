@@ -13,7 +13,6 @@ export class ButtonComponent {
   @Input() size: 'large' | 'small' | 'default' = 'default';
   @Input() shape: 'circle' | 'round' | null = null;
   @Input() label?: string;
-  @Input() classes: string = '';
 
   @Output() onclick: EventEmitter<any> = new EventEmitter();
 

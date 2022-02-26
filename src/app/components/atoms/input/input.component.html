@@ -1,10 +1,32 @@
-<nz-input-group [nzSize]="size" [ngClass]="classes">
+<nz-input-group
+  [nzSize]="size"
+  [nzSuffix]="withSufiz ? suffixTemplate : undefined"
+>
   <input
-    type="text"
+    *ngIf="type !== 'text-area'"
+    [type]="inputType"
     nz-input
     [nzBorderless]="withOutBorder"
     [placeholder]="placeholder"
     (input)="onChange($event)"
     [value]="value"
   />
+  <textarea
+    *ngIf="type === 'text-area'"
+    nz-input
+    [nzBorderless]="withOutBorder"
+    [placeholder]="placeholder"
+    (input)="onChange($event)"
+    [value]="value"
+    [rows]="rows"
+  ></textarea>
 </nz-input-group>
+<ng-template #suffixTemplate>
+  <i
+    nz-icon
+    *ngIf="type === 'password'"
+    [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+    class="icon"
+    (click)="changePasswordVisible()"
+  ></i>
+</ng-template>
